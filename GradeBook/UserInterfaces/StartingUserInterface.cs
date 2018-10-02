@@ -3,9 +3,11 @@ using System;
 
 namespace GradeBook.UserInterfaces
 {
+
     public static class StartingUserInterface
     {
         public static bool Quit = false;
+
         public static void CommandLoop()
         {
             while (!Quit)
@@ -19,25 +21,37 @@ namespace GradeBook.UserInterfaces
         public static void CommandRoute(string command)
         {
             if (command.StartsWith("create"))
+            {
                 CreateCommand(command);
+            }
             else if (command.StartsWith("load"))
+            {
                 LoadCommand(command);
+            }
             else if (command == "help")
+            {
                 HelpCommand();
+            }
             else if (command == "quit")
+            {
                 Quit = true;
+            }
             else
+            {
                 Console.WriteLine("{0} was not recognized, please try again.", command);
+            }
         }
 
         public static void CreateCommand(string command)
         {
             var parts = command.Split(' ');
+
             if (parts.Length != 2)
             {
                 Console.WriteLine("Command not valid, Create requires a name.");
                 return;
             }
+
             var name = parts[1];
             BaseGradeBook gradeBook = new BaseGradeBook(name);
             Console.WriteLine("Created gradebook {0}.", name);
@@ -56,7 +70,9 @@ namespace GradeBook.UserInterfaces
             var gradeBook = BaseGradeBook.Load(name);
 
             if (gradeBook == null)
+            {
                 return;
+            }
 
             GradeBookUserInterface.CommandLoop(gradeBook);
         }
@@ -73,5 +89,6 @@ namespace GradeBook.UserInterfaces
             Console.WriteLine();
             Console.WriteLine("Quit - Exits the application");
         }
+
     }
 }

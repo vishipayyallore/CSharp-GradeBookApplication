@@ -40,6 +40,12 @@ namespace GradeBook.GradeBooks
             return letterGrade;
         }
 
+
+        public override void CalculateStatistics()
+        {
+            base.CalculateStatistics();
+        }
+
     }
 
 }
